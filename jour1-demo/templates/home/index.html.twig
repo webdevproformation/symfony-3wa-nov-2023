@@ -8,4 +8,17 @@
 récupérer la barre de développement / profiler  -->
 <p>possible d'afficher liste des routes des disponibles via la commande :</p>
 <code>symfony console debug:router</code>
+
+<div class="row">
+{% for article in articles %}
+    <div class="col-3">
+        <h2>{{ article.title }}</h2>
+        <p>créer par {{ article.auteur }}</p>
+        <p>créer le {{ article.createdAt | date("d/m/Y") }}</p>
+    </div>
+{% endfor %}
+</div>
+
+
+
 {% endblock %}

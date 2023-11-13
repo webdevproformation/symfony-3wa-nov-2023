@@ -51,8 +51,7 @@ class HomeController extends AbstractController{ // class
         // SELECT * 
         $articles = $repo->findAll();
         //dump($articles); 
-
-
+        
         return $this->render("home/index.html.twig" , [ "articles" => $articles ]); 
         // plusieurs pages pour notre premier site ! 
         // appeler une fichier de vue  
