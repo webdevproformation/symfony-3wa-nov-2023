@@ -2,20 +2,58 @@
 
 namespace App\Controller ;
 
+use App\Entity\Article;
+use App\Repository\ArticleRepository;
+use DateTime;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController{ // class 
 
-    public function index() : Response { // méthode => action  
+    public function index( ManagerRegistry $doctrine , ArticleRepository $repo ) : Response { // méthode => action  
         // echo "coucou";
         // die();
        // return new Response("coucou"); 
        //$table = [1,2,3];
        //dump($table);
        // dd($table); // dump and die()
-        return $this->render("home/index.html.twig"); 
+
+        /* 
+        INSERT 
+        $article = new Article();
+        $article->setTitle("premier article")
+                ->setAuteur("Victor Hugo")
+                ->setCreatedAt(new \DateTimeImmutable());
+        $em = $doctrine->getManager();
+        $em->persist($article);
+        $em->flush();  */
+
+        // $connexion PDO 
+        // SQL = "INSERT INTO ..."
+        // $statement = $connexion-> prepare(SQL)
+        // $statemente->executer()
+
+        // UPDATE
+        /* $article1 = $repo->find(1); // SELECT 
+        $article1->setAuteur("George Sand");
+        $em = $doctrine->getManager();
+        $em->persist($article1);
+        $em->flush(); */
+
+        // $sql =  "SELECT * FROM article WHERE id = ?"
+        // $statement = $connexion->prepare($sql);
+        // $statement->bindParams(1, $id , PDO::PARAM_INT)
+
+        // dd($article);
+
+        // SELECT * 
+        $articles = $repo->findAll();
+        //dump($articles); 
+
+
+        return $this->render("home/index.html.twig" , [ "articles" => $articles ]); 
         // plusieurs pages pour notre premier site ! 
         // appeler une fichier de vue  
     }
@@ -27,7 +65,6 @@ class HomeController extends AbstractController{ // class
     // attribut 
     #[Route("/contact" , name:"contact")]
     public function contact() : Response{
-        
         //return new Response("nous contacter") ; 
         return $this->render("home/contact.html.twig");
     }

@@ -1,0 +1,54 @@
+// pour ajouter des informations en base de données 
+
+// 1 établir une connexion à la base de données 
+// 2 créer les tables 
+// 3 INSERT des informations dans cette table 
+// 4 SELECT et les utiliser dans nos controllers 
+
+// pour réaliser toutes ces opérations 
+// Doctrine 
+// couche d'abtraction sur PDO 
+// communiquer avec n'importe quelle base de données 
+// mySQL / Oracle / sqlite ... PostGRE
+// le langage SQL n'est pas le même 
+// pas travailler en SQL MAIS directement via des Objects 
+// entités 
+// src/Entity => class Article  <==> décrire une ligne d'enregistrement dans la table article dans la base de données  
+
+// Repository lien entre Entité et la base de données 
+// INSERT / DELETE / SELECT / UPDATE 
+
+// migration => permet de sychroniser Entité avec la structure des tables 
+
+// plein de commande qui permettent d'automatiser 
+// créer de Entity 
+// création de migration ...
+
+symfony console make:entity
+
+table article 
+
+titre  => VARCHAR(200)
+auteur => VARCHAR(200)
+created_at => DATETIME 
+
+
+créer via la console de symfony une nouvelle entité 
+Category 
+contient 3 propriétés 
+label texte maximum de 200 caractères
+description texte maximum de 700 caractères
+etat boolean actif ou inactif 
+
+en utilisant la commande symfony console make:entity => créer l'entité ! 
+
+une fois que les entités sont créées
+créer la base de données (directement avec un phpmyadmin)
+de xampp
+
+symfony console make:migration
+
+ migrations/Version20231113151902.php
+
+
+symfony.exe console doctrine:migrations:migrate
