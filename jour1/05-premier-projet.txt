@@ -1,0 +1,80 @@
+// pour un projet symfony 
+
+// => dans la documentation
+
+https://symfony.com/doc/current/setup.html
+
+// l'installation se fait en ligne de commande 
+
+// PHP 8.1
+// composer 
+// optionnel (très pratique) symfony-cli 
+
+// cd .. 
+// symfony new jour1-demo --webapp 
+
+// composer create-projet symfony/skeleton:"6.3.*" jour1-demo
+// cd jour1-demo
+// composer require webapp
+
+
+dans votre dossier vous avez un nouveau projet créer
+ jour1-demo 
+
+bin => console et phpunit 
+
+php bin/console .....
+symfony console ..... 
+
+config => module (bundle) composant de notre application
+
+migration => fichier qui contiennent du SQL 
+gérer la strcture des tables de projet 
+
+public le dossier qui est le point d'entrée de votre application Symfony 
+
+src => source DANS ce dossier que l'on va travailler 95% du temps 
+
+template => dossier de vue => html.twig 
+le fichier de vue 
+
+test => réaliser des test unitaires et d'intégration
+via PHPUnit 
+
+var => dossier qui contient les fichier généré par le framework 
+
+fichier de log 
+fichier de cache 
+
+vendor => toutes les dépendance de notre projet 
+symfony et ses dépendances (composer qui l'a créer et alimenté)
+utiliser composer require ... ajouter des nouveaux dossiers dans vendor 
+
+.env => très important 
+identifiants de connexion 
+
+APP_ENV=dev
+contient les login et password de connexion aux bases de données 
+identifiants pour envoyer des emails via des API 
+
+
+config et src 
+dans src => class 
+namespace App\dossier\dossier 
+
+lancer le projet 
+
+cd jour1-demo
+
+
+
+
+symfony server:start => démarrer le serveur de développement
+
+installé un certificat ssl directement avec symfony
+
+symfony server:ca:install 
+
+symfony server:start
+
+https://127.0.0.1:8000

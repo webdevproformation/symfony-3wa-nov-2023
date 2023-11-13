@@ -1,0 +1,11 @@
+pour pouvoir utiliser en local Symfony 
+
+=> installé plusieurs logiciels 
+
+- installer PHP 8.1 (en mode CLI)
+- composer (en mode CLI)
+- symfony cli
+- git 
+
+ces 4 outils sont en ligne de commande 
+

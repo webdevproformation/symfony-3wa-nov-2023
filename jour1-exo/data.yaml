@@ -1,0 +1,22 @@
+etudiant: Alain
+adresse: 75 rue de Paris
+etudiants: ["Pierre", "Charles" , "Céline"]
+fleurs: 
+    - Lilas
+    - Jasmin
+    - Tulipe
+formation:
+    duree: 10
+    unite: mois
+    adresse:
+        rue: 75 rue de Marseille
+        cp: 75000
+        ville: Lille
+# commentaire dans un fichier .yaml 
+description: >
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, nobis vitae ex atque officia ullam tempore? 
+    Perspiciatis quaerat veniam asperiores reprehenderit vero a illo quae nostrum aut exercitationem quos culpa, ullam quibusdam eligendi amet assumenda ab! Cumque, necessitatibus. 
+    Unde facilis quos neque quod, et pariatur minus, omnis ducimus eaque delectus quas a nisi. Nisi dolorum vero non voluptatibus fugit eveniet praesentium repudiandae, eos reiciendis eligendi quo accusamus, exercitationem nam iure?
+
+
+# { etudiant : "Alain" , adresse : "75 rue de Paris" }

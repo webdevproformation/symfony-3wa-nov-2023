@@ -1,0 +1,13 @@
+créer un nouveau dossier jour1-exo 
+il contient 
+1 fichier index.php
+
+2 dossier "lib" qui contient 
+    3 fichier "HomeController.php"
+
+        ce fichier contient une class HomeController
+      4  cette class contient une méthode index qui retourne la string "hello"
+
+a utiliser les namespace sur la class  HomeController
+b utiliser composer pour créer l'autoloader 
+c et exécuter la méthode index de HomeController dans le fichier index.php 

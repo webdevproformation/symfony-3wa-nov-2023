@@ -1,0 +1,31 @@
+utiliser plusieurs librairies localement et 
+utiliser librairies téléchargées 
+
+=> résolu par un outil en PHP => composer 
+
+=> npm 
+
+=> outil qui permet de télécharger de librairie 
+écrite en php depuis le site packagist.org 
+
+// npm install joi => https://www.npmjs.com
+
+
+import JOI from "joi"
+
+// composer  => composer require symfony/yaml
+// autoloading
+
+spl_autoload_register(function($className){
+    // src\lib\User => nom qualifié de class
+    // require_once "src/lib/User.php"; 
+    $className = str_replace("\\", "/" , $className);
+    $className = $className . ".php";  // "bonjour" . "les amis"
+    require_once($className); 
+    var_dump($className); 
+});
+
+dans le dossier en jour1-rappel
+composer init 
+
+

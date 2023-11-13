@@ -1,0 +1,17 @@
+{
+    "name": "harri/jour1-exo",
+    "autoload": {
+        "psr-4": {
+            "lib\\": "lib/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Malik H",
+            "email": "malik.h@webdevpro.net"
+        }
+    ],
+    "require": {
+        "symfony/yaml": "^6.3"
+    }
+}

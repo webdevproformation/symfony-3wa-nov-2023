@@ -1,0 +1,42 @@
+Symfony 
+
+Framework => cadre de travail 
+
+code + une manière d'organiser son travail 
+en PHP 
+
+la documentation officielle 
+=> https://symfony.com/
+
+=> concurrent : Laravel (très à la mode en 2023)
+
+=> question => 50% connait / 5 etudiants l'utilisent au quotidien 
+
+=> pour faciliter la vie du développeur 
+=> ajouter 3 extensions dans votre IDE (Visial Studio Code)
+
+=> PHP Intelephense (Ben Mewburn)
+=> PHP Namespace Resolver (Mehedi Hassan)
+=> Twig Language 2 (mblode)
+
+.html 
+.php 
+<h1><?php echo isset($bonjour) ? htmlspecialchar($bonjour) : "" ?></h1>
+
+.html.twig 
+<h1>{{ bonjour }}</h1>
+
+// $toto = 20 ;
+// $titi = null ; 
+
+// est ce que la variable $toto existe (
+  isset()  est ce que la variable existe ??? elle a été créée précédemment)
+
+isset($toto) => true 
+
+isset($tata) => false 
+isset($titi) => false 
+
+=> réglage dans Visual Studio Code 
+=> utiliser Emmet => dans les fichiers .twig 
+

@@ -1,0 +1,10 @@
+déclarer une route 
+
+lorsque tu appelles 
+=> https://127.0.0.1:8000/
+
+=> exécuter une fonction dans un controller 
+
+=> fichier de vue html.twig 
+
+config/routes/framework.yaml

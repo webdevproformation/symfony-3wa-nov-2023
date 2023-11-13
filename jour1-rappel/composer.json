@@ -1,0 +1,15 @@
+{
+    "name": "harri/jour1-rappel",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Malik H",
+            "email": "malik.h@webdevpro.net"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,18 @@
+when@dev:
+    _errors:
+        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
+        prefix: /_error
+
+# créer une route 
+# liaison entre url et une méthode dans une class 
+
+home: ## nom de la route
+    path: / ## url 
+    controller: App\Controller\HomeController::index ## la méthode à appeler
+
+    # composer.json autoload App\\ => src/ 
+
+exo1:
+    path: /exo1
+    controller: App\Controller\Exo1Controller::index
+
