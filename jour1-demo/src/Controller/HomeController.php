@@ -12,7 +12,11 @@ class HomeController extends AbstractController{ // class
         // echo "coucou";
         // die();
        // return new Response("coucou"); 
+       //$table = [1,2,3];
+       //dump($table);
+       // dd($table); // dump and die()
         return $this->render("home/index.html.twig"); 
+        // plusieurs pages pour notre premier site ! 
         // appeler une fichier de vue  
     }
     // cas pratique créer une nouvelle route exo1
@@ -23,7 +27,9 @@ class HomeController extends AbstractController{ // class
     // attribut 
     #[Route("/contact" , name:"contact")]
     public function contact() : Response{
-        return new Response("nous contacter") ; 
+        
+        //return new Response("nous contacter") ; 
+        return $this->render("home/contact.html.twig");
     }
 
     /**
@@ -36,4 +42,19 @@ class HomeController extends AbstractController{ // class
         // composer require annotations
         return new Response("nous contacte le sav") ; 
     }
+
+    #[Route("/exo2", name:"exo2")]
+    public function exo2() : Response{
+        return $this->render("home/exo2.html.twig"); 
+    }
+
+
+    // créer une nouvelle route exo2
+    // appeler une méthode exo2 dans le controlle HomeController
+    // cette méthode appelle une vue 
+    // home/exo2.html.twig 
+    // cette vue va hérité du template base.html.twig
+    // le fichier exo2.html.twig  remplis le block body avec la balise html 
+    // <h1>exo 2</h1>
+    // remplir la balise <title></title> avec le texte "je suis exo 2"
 }
