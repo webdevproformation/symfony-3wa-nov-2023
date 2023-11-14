@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Ajouter un nouvel article" %}
+
+{% block body %}
+
+<h1>Ajouter un nouvel article</h1>
+
+{# form(form) #}
+{{ form_start(form) }}<!-- <form method="" action=""> -->
+
+    <!-- input titre -->
+    <!-- input like l'un à côté de l'autre -->
+    <div class="row">
+        <div class="col-6 mb-3">
+            {{ form_row(form.title , {'label':' titre de l\'article' , 'placeholder': 'titre'}) }}
+        </div>
+        <div class="col-6 mb-3">
+            {{ form_label(form.like, 'nombre de like') }}
+            {{ form_widget(form.like, {'attr': {'placeholder': 'saisir le nombre de like'}}) }}
+        </div>
+        <div class="col-12 mb-3">
+             {{ form_row(form.description , {'label':'contenu de l\'article'}) }}
+        </div>
+        <div class="col-12 mb-3">
+             {{ form_row(form.auteur , {'label':'auteur'}) }}
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary btn-lg">
+        </div>
+    </div>
+
+{{ form_end(form) }}<!-- </form> -->
+
+{% endblock %}

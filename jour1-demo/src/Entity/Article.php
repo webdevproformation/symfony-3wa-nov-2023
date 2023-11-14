@@ -30,6 +30,13 @@ class Article
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?int $like = null;
 
+    public function __construct()
+    {
+        // dès que l'utilise utilise le formulaire 
+        // on donne une valeur par défaut à la propriété created_at
+        $this->setCreatedAt(new  \DateTimeImmutable());
+    }
+
     public function getId(): ?int
     {
         return $this->id;

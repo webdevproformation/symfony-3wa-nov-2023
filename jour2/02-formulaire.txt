@@ -1,0 +1,22 @@
+les utilisateurs => donner des formulaires pour pouvoir créer des articles 
+pour créer des catégories
+
+symfony console make:form
+
+The name of the form class (e.g. GentleChefType):
+ > ArticleType (bien finir le nom par Type)
+
+ce formulaire il est associé à quelle entité 
+Article
+
+ created: src/Form/ArticleType.php
+
+créer un nouveau controller qui permet de gérer les articles 
+
+symfony console make:controller
+
+Choose a name for your controller class (e.g. GentlePizzaController):
+ > ArticleController
+
+ created: src/Controller/ArticleController.php
+ created: templates/article/index.html.twig
