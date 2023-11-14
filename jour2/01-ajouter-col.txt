@@ -1,0 +1,30 @@
+ajouter une nouvelle colonne dans la table article 
+
+=> relancer la commande 
+
+symfony console make:entity Article 
+
+
+ajouter directement dans le fichier Article (entité)
+manuellement
+
+#[ORM\Column(type: Types::INTEGER, nullable: true)]
+private ?int $like = null;
+
+commande qui permet d'ajouter setter et getter 
+
+symfony console make:entity App\Entity --regenerate
+
+symfony console make:migration
+
+
+Cas pratique :
+ajouter deux colonnes à la table categorie
+- created_at qui va avoir comme valeur => DATETIME il accepte d'être NULL 
+- order qui va stocker comme type de valeur chiffre entier il accepte d'être NULL 
+
+commentaire pour Rayan !
+
+
+
+

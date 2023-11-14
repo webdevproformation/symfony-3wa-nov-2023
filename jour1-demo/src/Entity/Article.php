@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 // ORM Object Relation Mapper 
@@ -22,6 +23,12 @@ class Article
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $like = null;
 
     public function getId(): ?int
     {
@@ -60,6 +67,30 @@ class Article
     public function setCreatedAt(\DateTimeImmutable $created_at): static
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getLike(): ?int
+    {
+        return $this->like;
+    }
+
+    public function setLike(?int $like): static
+    {
+        $this->like = $like;
 
         return $this;
     }
