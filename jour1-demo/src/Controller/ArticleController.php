@@ -35,7 +35,9 @@ class ArticleController extends AbstractController
         }
 
         return $this->render('article/index.html.twig', [
-            "form" => $form->createView()
+            "form" => $form->createView() ,
+            "title" => "créer un article" ,
+            "btn" => "créer"
         ]);
     }
 
@@ -58,6 +60,44 @@ class ArticleController extends AbstractController
         return $this->render( "article/single.html.twig" , [
             "article" => $article 
         ] );
+    }
+
+    #[Route( "/article/update/{id}", name:"article_update")]
+    public function updateArticle($id , ArticleRepository $repo , Request $request, ManagerRegistry $doctrine):Response{
+
+        $article = $repo->find($id);
+
+        $form = $this->createForm(ArticleType::class , $article);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $doctrine->getManager();
+            // dd($article);
+            $em->persist($article); // va stocker les valeurs du formulaire 
+            // DANS l'entité
+            $em->flush();
+            $this->addFlash("success", "Article bien crée");
+            return $this->redirectToRoute("home");
+        }
+
+        return $this->render( "article/index.html.twig" , [
+            "form" => $form ,
+            "title" => "Mettre à jour un article",
+            "btn" => "update"
+        ] );
+    }
+
+    #[Route("/article/delete/{id}" , name:"article_delete")]
+    public function deleteArticle($id , ArticleRepository $repo, ManagerRegistry $doctrine):Response{
+
+        $article = $repo->find($id);
+        $em = $doctrine->getManager();
+        $em->remove($article);
+        $em->flush();
+        $this->addFlash("success", "article $id a bien été supprimé");
+        return $this->redirectToRoute("home");
+
     }
 
 }

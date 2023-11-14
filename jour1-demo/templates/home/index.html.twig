@@ -20,8 +20,8 @@ récupérer la barre de développement / profiler  -->
 {% for article in articles %}
     <div class="col-3">
         <h2>{{ article.title }}</h2>
-        <p>créer par {{ article.auteur }}</p>
-        <p>créer le {{ article.createdAt | date("d/m/Y") }}</p>
+        <p>créé par {{ article.auteur }}</p>
+        <p>créé le {{ article.createdAt | date("d/m/Y") }}</p>
         <a href="{{path('article_single', {id : article.id})}}">lire la suite</a>
     </div>
 {% endfor %}

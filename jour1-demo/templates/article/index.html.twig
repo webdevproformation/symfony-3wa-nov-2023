@@ -4,7 +4,7 @@
 
 {% block bodyback %}
 
-<h1>Ajouter un nouvel article</h1>
+<h1>{{ title }}</h1>
 
 {# form(form) #}
 {{ form_start(form) }}<!-- <form method="" action=""> -->
@@ -24,10 +24,10 @@
             {{ form_row(form.auteur , {'label':'auteur'}) }}
         </div>
         <div class="col-12 mb-3">
-             {{ form_row(form.description , {'label':'contenu de l\'article'}) }}
+             {{ form_row(form.description , {'label':'contenu de l\'article' , 'attr' : {'rows' : 10}}) }}
         </div>
         <div class="mb-3">
-            <input type="submit" class="btn btn-primary btn-lg">
+            <input type="submit" class="btn btn-primary btn-lg" value="{{btn}}">
         </div>
     </div>
 
