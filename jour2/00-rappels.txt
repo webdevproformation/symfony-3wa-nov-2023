@@ -1,0 +1,128 @@
+
+dans le PHP moderne 
+outil composer => 
+- permettre de télécharger des libraires (npm)
+composer require nom_createur/lib 
+
+- autoloading => chargement automatique
+
+=> require permet de télécharger des fichiers contenant des class 
++ namespace 
+
+=> spl_autoload_register()
+
+et composer permet d'automatiser l'utilisation require + autoloading + namespace
+
+use src\Composant ; = chargement + sécurité 
+
+
+---- 
+
+Symfony framework MVC 
+
+Kernel 
+Router => définir une route 
+via un fichier yaml 
+nom_route:
+    path:/
+    controller: App\Controller\SecurityController::login 
+
+via annotation 
+/** 
+* deux étoiles après le 1er slash 
+* @Route("/" , name="nom")
+*/
+
+via attribute (depuis PHP 8)
+#[Route("/" , name:"nom")]
+
+symfony console debug:router
+
+Model Vue Controller 
+
+namespace App\Controller ;
+
+class HomeController extends AbstractController{
+
+    #[Route("/" , name:"nom")]
+    public function accueil() :Response{ // méthode / action
+        return new Response("bonjour");
+        return $this->render("chemin/fichier.html.twig")
+    }
+
+}
+
+Vue => template 
+
+html.twig => contenir du html ET symtaxe proche du php  
+<?php echo ?>
+{{ }} écho 
+{%  %} boucle condition créer des variables 
+{#   #} commentaire en twig 
+
+{{ path("nom_route") }} 
+{{ dump("") }}
+{% extends "base.html.twig" %}
+{% block body %}texte{% endblock %}
+
+Model
+
+Doctrine 
+
+- Entity => décrire un enregistrement dans une table de la base de données 
+- Repository => faire en sorte faire interagir Entity  et la base de données 
+- migrations => fichier qui permet de synchroniser les propriétés des entités AVEC les colonnes de tables dans la base de données
+
+symfony console make:entity 
+symfony console make:migration 
+symfony console doctrine:migrations:migrate 
+
+
+utiliser dans les controllers 
+
+entity Manager que l'on va associer avec l'entité 
+
+INSERT 
+$e = new Entite()
+$e->setTitre("")->setDescription("") ;
+
+ManagerRegistry $doctrine (injection de dépendance)
+
+$em = $doctrine->getManager(); /*em Entity Manager */
+$em->persist($e) ; 
+$em->flush(); 
+
+SELECT 
+
+ArticleRepository $repo
+
+$repo->find()
+$repo->findAll()
+$repo->findBy()
+
+------------
+
+
+=> système de fichier => 
+
+Window 
+"C:\Users\harri\Documents\formateur" anti slash 
+
+Linux et MacOS => /var/www/... slash 
+
+internet => https://groupeh3.hyperplanning.fr/hp/enseignant
+Window Linux et MacOS
+
+slash 
+
+en PHP sur les namespaces App\Controller\CtrlController
+
+anti slash 
+
+si tu veux stocker un antislash dans une string tu dois le doubler 
+"\\"
+
+si veux stocker un slash 
+"/"
+
+

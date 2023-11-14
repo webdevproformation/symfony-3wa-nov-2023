@@ -3,7 +3,9 @@
 namespace App\Controller ;
 
 use App\Entity\Article;
+use App\Entity\Categorie;
 use App\Repository\ArticleRepository;
+use App\Repository\CategorieRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,7 +53,7 @@ class HomeController extends AbstractController{ // class
         // SELECT * 
         $articles = $repo->findAll();
         //dump($articles); 
-        
+
         return $this->render("home/index.html.twig" , [ "articles" => $articles ]); 
         // plusieurs pages pour notre premier site ! 
         // appeler une fichier de vue  
@@ -63,9 +65,30 @@ class HomeController extends AbstractController{ // class
     // nouveauté du langage PHP 8
     // attribut 
     #[Route("/contact" , name:"contact")]
-    public function contact() : Response{
+    public function contact(  ManagerRegistry $doctrine , CategorieRepository $repo ) : Response{
+
+        /* $categorie = new Categorie();
+        $categorie->setLabel("javascript")
+                  ->setDescription("formation en javascript")
+                  ->setEtat(true);
+
+        //dd($categorie);
+        $em = $doctrine->getManager();
+        $em->persist($categorie);
+
+        $categorie2 = new Categorie();
+        $categorie2->setLabel("PHP")
+                  ->setDescription("formation en PHP")
+                  ->setEtat(false);
+        $em->persist($categorie2);
+
+        $em->flush(); */
+
+        $categories = $repo->findAll();
+
+
         //return new Response("nous contacter") ; 
-        return $this->render("home/contact.html.twig");
+        return $this->render("home/contact.html.twig" , ["categories" => $categories]);
     }
 
     /**
@@ -81,7 +104,7 @@ class HomeController extends AbstractController{ // class
 
     #[Route("/exo2", name:"exo2")]
     public function exo2() : Response{
-        return $this->render("home/exo2.html.twig"); 
+        return $this->render("home/exo2.html.twig" , ["bonjour" => "bonjour"]); 
     }
 
 

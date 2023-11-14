@@ -52,3 +52,16 @@ symfony console make:migration
 
 
 symfony.exe console doctrine:migrations:migrate
+
+
+cas pratique 
+
+ajouter dans la table Categorie 2 lignes 
+
+// label       / description            / etat 
+// javascript / formation en javascript / true 
+// PHP / formation en php               / false 
+
+// utiliser Doctrine et l'entité Catégorie => pour réaliser cet ajouter 
+
+// afficher la liste des catégories dans la page la page contact 
