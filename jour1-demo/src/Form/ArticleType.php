@@ -15,7 +15,7 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('auteur')
-            ->add('like')
+            ->add('liked')
         ;
         // liste des champs du formulaire 
     }

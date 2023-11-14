@@ -28,7 +28,7 @@ class Article
     private ?string $description = null;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    private ?int $like = null;
+    private ?int $liked = null;
 
     public function __construct()
     {
@@ -90,14 +90,15 @@ class Article
         return $this;
     }
 
-    public function getLike(): ?int
+
+    public function getLiked(): ?int
     {
-        return $this->like;
+        return $this->liked;
     }
 
-    public function setLike(?int $like): static
+    public function setLiked(?int $liked): static
     {
-        $this->like = $like;
+        $this->liked = $liked;
 
         return $this;
     }
