@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/article/new', name: 'app_article')]
+    #[Route('/article/new', name: 'article_new')]
     public function index( Request $request , ManagerRegistry $doctrine ): Response
     {
         // générer le formulaire depuis ArticleType 

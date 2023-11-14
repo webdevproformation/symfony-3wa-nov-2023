@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategorieController extends AbstractController
 {
-    #[Route('/categorie/new', name: 'app_categorie')]
+    #[Route('/categorie/new', name: 'categorie_new')]
     public function index(Request $request , ManagerRegistry $doctrine): Response
     {
         $categorie = new Categorie();
