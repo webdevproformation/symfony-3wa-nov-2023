@@ -37,3 +37,9 @@ class ArticleController extends AbstractController
         ]);
     }
 }
+
+// cas pratique 
+// créer CategorieType basé sur l'entité Categorie 
+// créer un nouveau Controller permettant d'ajouter de nouvelle catégorie 
+// dans la vue de l'action du controlleur => afficher un formulaire 
+// qui va permettre d'ajouter une nouvelle catégorie 
