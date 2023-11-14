@@ -108,6 +108,8 @@ class HomeController extends AbstractController{ // class
         return $this->render("home/exo2.html.twig" , ["bonjour" => "bonjour"]); 
     }
 
+    
+
 
     // créer une nouvelle route exo2
     // appeler une méthode exo2 dans le controlle HomeController
