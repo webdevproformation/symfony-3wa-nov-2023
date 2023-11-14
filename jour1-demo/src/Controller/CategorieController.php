@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Form\CategorieType;
+use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,5 +32,14 @@ class CategorieController extends AbstractController
         return $this->render('categorie/index.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route("/categorie/list" , name:"categorie_list")]
+    public function listeCategorie(CategorieRepository $repo) :Response{
+
+        $categories = $repo->findAll();
+
+        return $this->render("categorie/liste.html.twig" , ["categories" => $categories]);
+
     }
 }

@@ -10,6 +10,49 @@ et va les afficher dans une vue sous forme de tableau
 
 titre / auteur / date de création / action 
 
+dans twig 
+
+héritage d'un fichier .html.twig => .html.twig 
+
+
+base.html.twig 
+<html>
+    <head>
+    </head>
+    <body>
+        {% block body%} {% endblock %}
+    </body>
+</html>
+
+----
+
+accueil.html.twig 
+{% extends "base.html.twig" %}
+
+{% block body%} 
+<h1>bonjour</h1>
+{% endblock %}
+
+----
+
+resultat finale 
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>bonjour</h1>
+    </body>
+</html>
+
+
+---------------
+
+dans le composant Catégorie
+
+ajouter une nouvelle méthode categorie_list 
+qui va récupérer la liste de toutes les catégories 
+
+et les affiche dans un tableau 
 
 
 

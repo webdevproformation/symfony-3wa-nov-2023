@@ -58,6 +58,10 @@ class Categorie
         return $this;
     }
 
+    public function isActif() : string{
+        return $this->isEtat() === true ? "actif" : "inactif";
+    }
+
     public function isEtat(): ?bool
     {
         return $this->etat;
