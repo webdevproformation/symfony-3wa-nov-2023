@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,6 +38,18 @@ class ArticleController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+
+    #[Route("/article/list" , name:"article_list")]
+    public function listeArticles(ArticleRepository $repo) :Response{
+
+        $articles = $repo->findAll();
+
+        return $this->render( "article/liste.html.twig" , [
+            "articles" => $articles 
+        ] );
+
+    }
+
 }
 
 // cas pratique 

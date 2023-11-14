@@ -1,0 +1,16 @@
+dans le controller Article
+
+créer une nouvelle méthode 
+liste_articles 
+
+cette méthode récupére en base de données l'ensemble des articles enregistrés 
+et va les afficher dans une vue sous forme de tableau 
+
+4 colonnes dans le tableau
+
+titre / auteur / date de création / action 
+
+
+
+
+
