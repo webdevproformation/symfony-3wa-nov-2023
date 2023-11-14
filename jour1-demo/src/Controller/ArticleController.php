@@ -29,6 +29,7 @@ class ArticleController extends AbstractController
             $em->persist($article); // va stocker les valeurs du formulaire 
             // DANS l'entité
             $em->flush();
+            $this->addFlash("success", "Article bien crée");
             return $this->redirectToRoute("home");
         }
 

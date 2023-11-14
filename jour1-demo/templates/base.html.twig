@@ -9,8 +9,6 @@
         {% block stylesheets %}
         {% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
     </head>
     <body>
         <header class="bg-primary">
@@ -37,5 +35,8 @@
         <main class="container mt-4 p-0">
         {% block body %}{% endblock %}
         </main>
+
+        {% block javascripts %}
+        {% endblock %}
     </body>
 </html>

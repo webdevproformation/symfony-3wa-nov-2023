@@ -51,7 +51,8 @@ class HomeController extends AbstractController{ // class
         // dd($article);
 
         // SELECT * 
-        $articles = $repo->findAll();
+        $articles = $repo->get4LastArticle();
+        //dump($repo->get4LastArticle()); 
         //dump($articles); 
 
         return $this->render("home/index.html.twig" , [ "articles" => $articles ]); 

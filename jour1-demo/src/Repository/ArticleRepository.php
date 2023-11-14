@@ -21,6 +21,19 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /** requête qui permet d'afficher la liste des 4 derniers articles disponibles dans la table Article */
+
+    public function get4LastArticle() : array{
+        // SELECT * FROM article LIMIT 4;
+        return $this->createQueryBuilder('a')
+                    ->orderBy('a.id', 'DESC')
+                    ->setMaxResults(4)
+                    ->getQuery()
+                    ->getResult()
+                ;
+    }
+
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
