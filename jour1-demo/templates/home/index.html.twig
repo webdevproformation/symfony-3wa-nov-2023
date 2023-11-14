@@ -3,6 +3,13 @@
 {% block title "bienvenue sur mon site"  %}
 
 {% block body %}
+
+{% for info in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ info }}
+    </div>
+{% endfor %}
+
 <h1>je suis la page d'accueil</h1>
 <!-- en réalisant l'héritage => base.html.twig
 récupérer la barre de développement / profiler  -->

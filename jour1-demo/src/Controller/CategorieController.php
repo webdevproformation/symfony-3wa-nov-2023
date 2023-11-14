@@ -22,6 +22,10 @@ class CategorieController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($categorie);
             $em->flush();
+            // message flash 
+            // apparitre uniquement une fois suite à la validation du formulaire
+            // utilise la $_SESSION
+            $this->addFlash("success" , "La catégorie a bien été enregistrée en base de données");
             return $this->redirectToRoute("home");
         }
         return $this->render('categorie/index.html.twig', [
