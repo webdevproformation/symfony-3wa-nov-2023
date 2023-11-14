@@ -23,6 +23,12 @@ class Categorie
     #[ORM\Column]
     private ?bool $etat = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $ordered = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +66,30 @@ class Categorie
     public function setEtat(bool $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $created_at): static
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getOrdered(): ?int
+    {
+        return $this->ordered;
+    }
+
+    public function setOrdered(?int $ordered): static
+    {
+        $this->ordered = $ordered;
 
         return $this;
     }
