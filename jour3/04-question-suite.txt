@@ -4,3 +4,44 @@ composer show
 
 -------
 
+joi => librairie qui permet de réaliser un if ()
+
+dans symfony il y a des composants qui permettent de valider les informations saisies dans les formulaires 
+
+=> ajouté directement DANS l'ENTITE 
+=> ajouter annotation supplémentaires sur les propriétés de l'entité 
+
+=> ajouter dans l'entité Constraints As Assert
+
+
+symfony new jour1-demo --webapp 
+
+bin/ binaire 
+symfony console make:entity 
+
+créer des base de données / table 
+formulaire / vue / controller 
+en ligne de commande 
+
+config / module / bundle / composant 
+- deux parties => vendor 
+               => config 
+                modifier le comportement des module 
+
+                .yaml === .json
+
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+{
+    controllers : {
+        resource: {
+            path : "../src/Controller/",
+            namespace: "App\Controller"
+        },
+        type : "attribute"
+    }
+}

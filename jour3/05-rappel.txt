@@ -1,0 +1,14 @@
+Symfony manipuler une base de données 
+
+créer table / mettre jour / supprimer
+
+créer des entités 
+symfony console make:entity 
+
+créer des migrations 
+symfony console make:migration 
+
+exécuter tes migrations 
+symfony console d:m:m
+
+

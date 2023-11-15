@@ -18,12 +18,14 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
+    
     #[ORM\Column(length: 200)]
+    #[Assert\NotBlank()]
     #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: 'Title must be at least {{ limit }} characters long',
-        maxMessage: 'Title cannot be longer than {{ limit }} characters',
+        min : 3,
+        max : 255,
+        minMessage:"Titre doit contenir au minimum {{ limit }} caractères",
+        maxMessage:"Titre doit contenir au maximum {{ limit }} caractères",
     )]
     private ?string $title = null;
 

@@ -51,7 +51,7 @@ class HomeController extends AbstractController{ // class
         // dd($article);
 
         // SELECT * 
-        $articles = $repo->get4LastArticle();
+        $articles = $repo->get4LastArticle(true);
         //dump($repo->get4LastArticle()); 
         //dump($articles); 
 

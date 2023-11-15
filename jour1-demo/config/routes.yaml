@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# ici créer une route 
+# nom:
+#     path: /toto
+#     controller: App\Controller\Exo1Controller::index
+
