@@ -1,0 +1,11 @@
+lors de la phase de développement
+
+vous allez réaliser des tests sur votre base de données 
+
+voir le site internet avec 200 articles 
+créé avec un texte alétoire 
+
+composer require orm-fixtures --dev
+
+=> fixture 
+symfony console make:fixture => créer un fichier de fixture 

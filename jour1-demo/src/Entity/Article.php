@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
+    public const NOM_AUTEUR = ["Victor Hugo" , "moi"];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -29,18 +31,32 @@ class Article
     )]
     private ?string $title = null;
 
+    #[Assert\Choice(
+        choices : self::NOM_AUTEUR,
+        message : "choisir un nom d'auteur valide"
+    )]
     #[ORM\Column(length: 200)]
     private ?string $auteur = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[Assert\Length(
+        min : 3,
+        max : 5000,
+        minMessage:"La description doit contenir au minimum {{ limit }} caractères",
+        maxMessage:"La description doit contenir au maximum {{ limit }} caractères",
+    )]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     #[Assert\NotBlank]
-    #[Assert\Positive]
+    #[Assert\Range(
+        min : 2 ,
+        max :10 ,
+        notInRangeMessage : "le nombre de like doit être compris entre {{ min }} et {{ max }}"
+    )]
     private ?int $liked = null;
 
     #[ORM\ManyToOne( inversedBy: 'article')]

@@ -33,6 +33,11 @@ class Categorie
     #[ORM\OneToMany(mappedBy: 'categories', targetEntity: Article::class)]
     private Collection $article;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
