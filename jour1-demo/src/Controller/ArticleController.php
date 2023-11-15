@@ -27,6 +27,24 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
+            // récupérer l'image 
+            $file = $request->files->get("article")["image"];
+            
+
+            // déplacer dans le dossier upload
+            // le dossier où stocker l'image 
+            $uploadDirectory = $this->getParameter("upload_directory");
+            $nomFichier = md5(uniqid()) . "." . $file->guessExtension();
+            
+            $file->move($uploadDirectory, $nomFichier);
+            
+            // enregistrer en base de données 
+            // url relatif de l'image 
+            $article->setImage($nomFichier);
+
+           
+
             $em = $doctrine->getManager();
             // dd($article);
             $em->persist($article); // va stocker les valeurs du formulaire 

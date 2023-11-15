@@ -62,6 +62,9 @@ class Article
     #[ORM\ManyToOne( inversedBy: 'article')]
     private ?Categorie $categories  = null ;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     public function __construct()
     {
         // dès que l'utilise utilise le formulaire 
@@ -144,6 +147,19 @@ class Article
     public function setCategories(?Categorie $categorie): static
     {
         $this->categories = $categorie;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        // return $this->image ?? "https://via.placeholder.com/400x200" ;
+        return $this->image === null ? "https://via.placeholder.com/400x200" : "upload/".$this->image ;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

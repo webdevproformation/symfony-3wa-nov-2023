@@ -21,7 +21,8 @@ récupérer la barre de développement / profiler  -->
 <div class="row">
 {% for article in articles %}
     <div class="col-3">
-        <h2>{{ article.title }}</h2>
+        <h2 class="h5">{{ article.title }}</h2>
+        <img src="{{ asset(article.image) }}" alt="" class="img-fluid">
         <p>créé par {{ article.auteur }}</p>
         <p>créé le {{ article.createdAt | date("d/m/Y") }}</p>
         <a href="{{path('article_single', {id : article.id})}}">lire la suite</a>
