@@ -1,0 +1,17 @@
+
+relation 1-n 
+
+un catégorie peut être associée à plusieurs articles 
+
+un article ne peut être associé qu'à une seule catégorie 
+
+via Doctrine et des annotations => réaliser cette relation
+
+récupérer les données et les afficher 
+
+
+article 1 - n catégorie
+
+article oneToMany
+
+catégorie manyToOne

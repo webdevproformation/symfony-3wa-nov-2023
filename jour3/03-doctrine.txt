@@ -1,0 +1,14 @@
+
+
+créer une table Client 
+
+(id)
+email VARCHAR(255)
+age  SMALLINT < 255
+created_at  DATETIME 
+
+symfony console make:entity
+
+symfony console make:migration 
+
+symfony console d:m:m

@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\CategorieRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategorieRepository;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -28,6 +29,9 @@ class Categorie
 
     #[ORM\Column(nullable: true)]
     private ?int $ordered = null;
+
+    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: Article::class)]
+    private Collection $article;
 
     public function getId(): ?int
     {
@@ -94,6 +98,33 @@ class Categorie
     public function setOrdered(?int $ordered): static
     {
         $this->ordered = $ordered;
+
+        return $this;
+    }
+
+    public function getArticle(): Collection
+    {
+        return $this->article;
+    }
+
+    public function addArticle(Article $article): static
+    {
+        if (!$this->article->contains($article)) {
+            $this->article->add($article);
+            $article->setCategories($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): static
+    {
+        if ($this->article->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getCategories() === $this) {
+                $article->setCategories(null);
+            }
+        }
 
         return $this;
     }

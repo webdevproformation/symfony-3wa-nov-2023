@@ -23,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     /** requête qui permet d'afficher la liste des 4 derniers articles disponibles dans la table Article */
 
-    public function get4LastArticle() : array{
+    public function get4LastArticle($date, ) : array{
         // SELECT * FROM article LIMIT 4;
         return $this->createQueryBuilder('a')
                     ->orderBy('a.id', 'DESC')

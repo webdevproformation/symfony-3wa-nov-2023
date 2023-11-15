@@ -1,0 +1,60 @@
+
+Symfony traiter une base de données 
+
+=> utiliser le langage SQL + PDO 
+
+$connexion = new PDO()
+
+$stmt = $connexion->prepare("requeteSQL");
+
+$stmt->bindParams()
+$stmt-> execute() // lancer la requete si INSERT UPDATE DELETE 
+$stmt->fetch()    // SELECT 
+
+=> utiliser Doctrine + Entité 
+
+- INSERT / DELETE / UPDATE 
+$em = $this->doctrine->getManager(); // Entité Manager 
+
+INSERT / UPDATE
+$em->persist($entite);
+$em->flush();
+
+DELETE 
+$em->remove($entite)
+$em->flush(); 
+
+SELECT 
+
+$repo->find()
+$repo->findAll()
+$repo->findBy()
+
+
+----  
+
+vue => afficher le formulaire 
+
+{{ form(form) }}
+
+{{ form_start(form) }}
+    {{ form_row(form.titre) }} // label / input / message erreur 
+    {{ form_row(form.label) }}
+{{ form_end(form) }}
+
+{{ form_start(form) }}
+    {{ form_label(form.titre) }} // label 
+    {{ form_widget(form.titre) }} //  input 
+    {{ form_errors(form.titre) }} //  message erreur 
+
+
+    {{ form_label(form.label) }} // label 
+    {{ form_widget(form.label) }} //  input 
+    {{ form_errors(form.label) }} //  message erreur 
+    
+{{ form_end(form) }}
+
+// comment Symfony va distinguer entre INSERT et UPDATE 
+
+formulaure et pas de champ avec l'id  (INSERT)
+formulaire et input type hidden avec l'id  (UPDATE)

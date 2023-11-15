@@ -1,0 +1,6 @@
+symfony new projet => API Minimal 
+symfony new projet --webapp 
+composer show
+
+-------
+

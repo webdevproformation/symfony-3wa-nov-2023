@@ -39,6 +39,8 @@ class CategorieController extends AbstractController
 
         $categories = $repo->findAll();
 
+        //dd($repo->findByIdAndLabelActive(true));
+
         return $this->render("categorie/liste.html.twig" , ["categories" => $categories]);
 
     }

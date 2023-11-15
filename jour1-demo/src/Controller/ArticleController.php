@@ -17,8 +17,10 @@ class ArticleController extends AbstractController
     public function index( Request $request , ManagerRegistry $doctrine ): Response
     {
         // générer le formulaire depuis ArticleType 
-        $article = new Article();
+        $article = new Article(); // {id = null} INSERT 
+        dump($article);
         $article->setAuteur("Victor Hugo");
+        //$article->set
         $form = $this->createForm(ArticleType::class , $article);
         // et le retourner 
 
@@ -53,9 +55,13 @@ class ArticleController extends AbstractController
     }
 
     #[Route( "/article/{id}", name:"article_single")]
-    public function showArticle($id , ArticleRepository $repo):Response{
+    //public function showArticle($id, ArticleRepository $repo):Response{
+    public function showArticle(Article $article):Response{
 
-        $article = $repo->find($id);
+        // utilisation des params converter
+        //$article = $repo->find($id);
+
+        //dd($article);
 
         return $this->render( "article/single.html.twig" , [
             "article" => $article 
@@ -65,7 +71,8 @@ class ArticleController extends AbstractController
     #[Route( "/article/update/{id}", name:"article_update")]
     public function updateArticle($id , ArticleRepository $repo , Request $request, ManagerRegistry $doctrine):Response{
 
-        $article = $repo->find($id);
+        $article = $repo->find($id); // {id = 1 } => UPDATE
+        dump($article);
 
         $form = $this->createForm(ArticleType::class , $article);
 

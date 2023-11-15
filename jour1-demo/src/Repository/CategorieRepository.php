@@ -21,6 +21,21 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
+    public function findByCategoriesId($val){
+        $query= $this->createQueryBuilder('c')
+                    ->select(["c.id", "c.label"])
+                    ->andWhere('c.etat = :val')
+                    ->setParameter('val', $val)
+                    ->getQuery();
+
+        $result = $query->getResult();
+        $data = [];
+        foreach ($result as $value) {
+            $data[$value["label"]] = $value["id"];
+        }
+        return $data;
+    }
+
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects
 //     */

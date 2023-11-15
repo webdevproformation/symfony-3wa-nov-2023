@@ -1,0 +1,29 @@
+base de données on va avoir plusieurs tables 
+
+Article 
+
+Article 1 est associé 1 Catégorie
+Catégorie est associées à plusieurs Article 
+
+Catégorie 
+
+=> 1 - n => Cardinalité  
+
+pour travailler avec les deux => liaisons 
+Clé secondaire // FOREIGN KEY // Clé étrangères 
+
+=> Doctrine => relation OneToMany 
+
+relation 
+
+symfony console make:entity Article
+
+quelle entité associées 
+
+// OneToMany ManyToOne ManyToMany OneToOne 
+
+symfony console make:migration
+
+symfony console doctrine:m:m
+
+

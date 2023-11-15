@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -38,6 +40,9 @@ class Article
     #[Assert\NotBlank]
     #[Assert\Positive]
     private ?int $liked = null;
+
+    #[ORM\ManyToOne( inversedBy: 'article')]
+    private ?Categorie $categories  = null ;
 
     public function __construct()
     {
@@ -111,4 +116,18 @@ class Article
 
         return $this;
     }
+
+ 
+    public function getCategories(): ?Categorie
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categorie $categorie): static
+    {
+        $this->categories = $categorie;
+
+        return $this;
+    }
+
 }

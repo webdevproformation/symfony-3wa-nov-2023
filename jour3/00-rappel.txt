@@ -1,0 +1,61 @@
+CRUD 
+
+=> hier CRUD via notre navigateur via des formulaires / via des Bouton 
+
+=> comment créer un formulaire ??? 
+
+symfony console make:form 
+
+=> NomEntiteType 
+=> quelle Entité associée => NomEntite
+
+=> générer un fichier src/Form/NomEntiteType.php 
+
+=> 2 méthodes 
+- décrire combien il y a de champs dans le formulaire 
+- lier le formulaire à l'Entité 
+
+---- 
+
+comment utiliser cette class ?? / où ?? 
+
+Controller => vue 
+
+
+#[Route("/", name:"home")]
+public function index(Request $request , EntityManager $doctrine){
+    // créer une instance de l'entite 
+    $categorie = new Categorie();
+
+    $form = $this->createForm(CategorieType::class, $categorie )
+
+    // $_POST
+    $form->handleRequest($request); // $_POST
+    // vérifie 
+    if( $form->isSubmitted()  &&  $form->isValid()  ){
+    
+        // si ok => INSERT
+        $em = $doctrine->getManager()
+        $em->persist($categorie);
+        $em->flush(); 
+
+        // ajouter un message au niveau de la vue via la $_SESSION
+        // message flash 
+        $this->addFlash("success" , "bravo !");
+        return $this->redirectToRoute("nom_route"); 
+        // vider la super globale $_POST 
+
+    }
+    // récupérer 
+
+    return $this->render("vue.html.twig", [
+        "form" =>$form->createView()
+    ]);
+}
+
+
+
+
+
+
+

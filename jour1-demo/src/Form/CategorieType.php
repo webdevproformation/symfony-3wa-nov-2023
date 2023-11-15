@@ -13,10 +13,10 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('label')
-            ->add('description')
-            ->add('etat')
-            ->add('ordered')
+            ->add('label') // <input>
+            ->add('description') //textarea
+            ->add('etat')     // checkbox
+            ->add('ordered')  // input number
             ->add("save", SubmitType::class , ["label" => "créer" , "attr" => ["class" => "btn btn-lg btn-outline-primary"]])
         ;
     }
