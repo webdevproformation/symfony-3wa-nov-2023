@@ -13,6 +13,25 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
+
+    private function moveAndUpdateImage($request , $article) :void{
+        // récupérer l'image 
+        $file = $request->files->get("article")["image"];
+        if(!empty($file)){
+            // déplacer dans le dossier upload
+            // le dossier où stocker l'image 
+            $uploadDirectory = $this->getParameter("upload_directory");
+            $nomFichier = md5(uniqid()) . "." . $file->guessExtension();
+            
+            $file->move($uploadDirectory, $nomFichier);
+            
+            // enregistrer en base de données 
+            // url relatif de l'image 
+            $article->setImage($nomFichier);
+        }
+    }
+
+
     #[Route('/article/new', name: 'article_new')]
     public function index( Request $request , ManagerRegistry $doctrine ): Response
     {
@@ -28,22 +47,7 @@ class ArticleController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
-            // récupérer l'image 
-            $file = $request->files->get("article")["image"];
-            
-
-            // déplacer dans le dossier upload
-            // le dossier où stocker l'image 
-            $uploadDirectory = $this->getParameter("upload_directory");
-            $nomFichier = md5(uniqid()) . "." . $file->guessExtension();
-            
-            $file->move($uploadDirectory, $nomFichier);
-            
-            // enregistrer en base de données 
-            // url relatif de l'image 
-            $article->setImage($nomFichier);
-
-           
+            $this->moveAndUpdateImage($request , $article);
 
             $em = $doctrine->getManager();
             // dd($article);
@@ -97,6 +101,9 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
+            $this->moveAndUpdateImage($request , $article);
+
             $em = $doctrine->getManager();
             // dd($article);
             $em->persist($article); // va stocker les valeurs du formulaire 
@@ -117,6 +124,17 @@ class ArticleController extends AbstractController
     public function deleteArticle($id , ArticleRepository $repo, ManagerRegistry $doctrine):Response{
 
         $article = $repo->find($id);
+
+        $nomImage = $article->getImage();
+        
+        if($nomImage){
+            $uploadDirectory = $this->getParameter("upload_directory");
+            $uploadDirectory = str_replace("/upload", "" , $uploadDirectory);
+            //dd($uploadDirectory);
+            $path = $uploadDirectory . "/" . $nomImage;
+            unlink($path);
+        }
+
         $em = $doctrine->getManager();
         $em->remove($article);
         $em->flush();
