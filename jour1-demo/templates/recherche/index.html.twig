@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechercher un article{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-9">
+        <h2>{{titreH1}} </h2>
+        <div class="row">
+        {% include "commun/_articles.html.twig"  %}
+        </div>
+    </div>
+    <div class="col-3">
+        <h2>Filtrer</h2>
+        {{ form_start(form) }}
+            {{ form_row(form.texte) }}
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+.smallcaps{
+    background:black;
+    color: white;
+    padding : 1px 2px;
+    border-radius:5px;
+    font-size:80%;
+}
+</style>
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    (function($){
+        $(document).ready(function(){
+            const texte = $("#search_texte").val()
+
+            $(`h2:contains('${texte}')`).html(function(_, html) {
+            return html.replace( new RegExp("("+texte+")", "g"), '<span class="smallcaps">$1</span>');
+            });
+        })
+    })(jQuery)
+</script>
+
+{% endblock %}

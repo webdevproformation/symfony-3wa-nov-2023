@@ -31,6 +31,17 @@ class ArticleRepository extends ServiceEntityRepository
                 ;
     }
 
+
+    public function getArticleByKeyWord($value) : array{
+
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.title LIKE :val')
+            ->setParameter('val', "%$value%")
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function get4LastArticle($date, ) : array{
         // SELECT * FROM article LIMIT 4;
         return $this->createQueryBuilder('a')
