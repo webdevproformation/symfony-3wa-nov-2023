@@ -46,7 +46,7 @@ class ArticleController extends AbstractController
     #[Route("/article/list" , name:"article_list")]
     public function listeArticles(ArticleRepository $repo) :Response{
 
-        $articles = $repo->findAll();
+        $articles = $repo->getArticleDesc();
 
         return $this->render( "article/liste.html.twig" , [
             "articles" => $articles 
