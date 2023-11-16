@@ -25,16 +25,23 @@
                         <a href="{{ path('contact') }}" class="nav-link">contact</a>
                     </li>
                 </ul>
+                
                 <ul class="navbar-nav ms-auto">
-                     <li class="navbar-item">
-                        <a href="{{ path('app_inscription') }}" class="nav-link">inscription</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="{{ path('app_login') }}" class="nav-link">Connexion</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
-                    </li>
+                    {% if app.user  %}  
+                        <li class="navbar-item">
+                            <a href="#" class="nav-link">Bienvenue {{ app.user.pseudo }}</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="navbar-item">
+                            <a href="{{ path('app_inscription') }}" class="nav-link">inscription</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="{{ path('app_login') }}" class="nav-link">Connexion</a>
+                        </li>
+                    {% endif %}
                 </ul>  
             </nav>
         </header>

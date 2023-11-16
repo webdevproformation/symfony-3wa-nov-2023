@@ -33,7 +33,6 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
     {
         $email_ou_pseudo = $request->request->get('email', '');
 
-
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email_ou_pseudo);
 
         return new Passport(

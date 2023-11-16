@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Membre;
 use App\Form\RegisterType;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -30,12 +34,12 @@ class SecurityController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        
+
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     #[Route("/inscription" , name:"app_inscription")]
-    public function inscription(Request $request) : Response{
+    public function inscription(Request $request , ManagerRegistry $doctrine , UserPasswordHasherInterface $hasher) : Response{
 
         // décrire formulaire 
         $membre = new Membre();
@@ -44,6 +48,15 @@ class SecurityController extends AbstractController
         // remplir les champs du formulaire avec des infos
         $form->handleRequest($request);
         //dd($membre);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $doctrine->getManager(); 
+            $passwordHashe = $hasher->hashPassword($membre, $membre->getPassword());
+            $membre->setPassword($passwordHashe);
+            $em->persist($membre);
+            $em->flush();
+            return $this->redirectToRoute("app_login");
+        }
 
         return $this->render("security/inscription.html.twig" , [
             // envoie le formulaire à la vue pour qu'il s'affiche
