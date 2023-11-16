@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Membre;
 use App\Form\RegisterType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -29,17 +30,29 @@ class SecurityController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
+        
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     #[Route("/inscription" , name:"app_inscription")]
-    public function inscription() : Response{
+    public function inscription(Request $request) : Response{
 
+        // décrire formulaire 
         $membre = new Membre();
         $form =  $this->createForm(RegisterType::class, $membre);
 
+        // remplir les champs du formulaire avec des infos
+        $form->handleRequest($request);
+        //dd($membre);
+
         return $this->render("security/inscription.html.twig" , [
-            "form" => $form
+            // envoie le formulaire à la vue pour qu'il s'affiche
+            "form" => $form->createView()
         ]);
+        // créer le formulaire
+        // récupérer des valeurs $_POST 
+        // verifier que les valeurs en $_POST sont conformes
+        // si ok => super 
+        // sinon afficher le formulaire avec des messages d'erreur
     }
 }

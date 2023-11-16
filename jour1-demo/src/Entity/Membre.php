@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\MembreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MembreRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: MembreRepository::class)]
-class Membre implements UserInterface
+class Membre implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,6 +20,9 @@ class Membre implements UserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $pseudo = null;
 
     public function getId(): ?int
     {
@@ -57,5 +61,17 @@ class Membre implements UserInterface
     }
     public function getUserIdentifier(): string{
         return "";
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
     }
 }

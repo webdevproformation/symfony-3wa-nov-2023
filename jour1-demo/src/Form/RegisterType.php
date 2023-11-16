@@ -16,7 +16,7 @@ class RegisterType extends AbstractType
         $builder
             ->add('email')
             ->add('password' , PasswordType::class)
-            ->add("creer", SubmitType::class, ["label" => "créer un profil membre"])
+            //->add("creer", SubmitType::class, ["label" => "créer un profil membre"])
         ;
     }
 

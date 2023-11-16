@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Repository\MembreRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,22 +22,29 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    private $membreRepository ; 
+
+    public function __construct(private UrlGeneratorInterface $urlGenerator , MembreRepository $membreRepository)
     {
+        $this->membreRepository = $membreRepository;
     }
 
-    public function authenticate(Request $request): Passport
+    public function authenticate(Request $request ): Passport
     {
-        $email = $request->request->get('email', '');
+        $email_ou_pseudo = $request->request->get('email', '');
 
-        $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
+
+        $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email_ou_pseudo);
 
         return new Passport(
-            new UserBadge($email),
+            new UserBadge($email_ou_pseudo , function($login){
+                return $this->membreRepository->findByEmailOrUsername($login);
+            }),
             new PasswordCredentials($request->request->get('password', '')),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),            ]
         );
+        // passport => clé qui permet d'autilisation de naviger dans la partie sécurisée du site 
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
@@ -46,8 +54,8 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('article_list'));
+        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

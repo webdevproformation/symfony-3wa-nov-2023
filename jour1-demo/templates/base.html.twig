@@ -26,10 +26,16 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="navbar-item">
-                        <a href="{{ path('article_list') }}" class="nav-link">Admin</a>
+                     <li class="navbar-item">
+                        <a href="{{ path('app_inscription') }}" class="nav-link">inscription</a>
                     </li>
-                </ul>
+                    <li class="navbar-item">
+                        <a href="{{ path('app_login') }}" class="nav-link">Connexion</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
+                    </li>
+                </ul>  
             </nav>
         </header>
         <main class="container mt-4 p-0">
