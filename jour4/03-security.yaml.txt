@@ -1,0 +1,29 @@
+fichier de configuration pour toute la partie authentification 
+et la partie autorisation 
+
+security:
+    password_hashers:
+        détermine l'algorithme de cryptage de vos mots de passe
+    providers:
+        où chercher les identifiants 
+            in_memory
+            in_database
+    firewalls:
+        dev 
+            pendant la phase de développement
+            accepter de laisser passer 
+            profiler et les fichiers de ressources (.css / .js )
+        main
+            comment se connecter  et se déconnecter 
+            où on est redirigé si on est logger correctement 
+                src/Security/SecurityAuthenticator
+
+    access_control:
+
+
+=> créer une page register 
+
+=> il faut que le password soit hashé => 
+INSERT 
+
+=> formulaire qui permet de créer de nouveaux membres

@@ -1,0 +1,39 @@
+Pour l'authentification 
+il existe déjà un module qui permet de gérer la partie connexion et déconnexion sur le site internet 
+
+=> module sécurity 
+
+au préalable il faut avoir créer l'entité Membre 
+
+attention cette entité spéciale, elle doit implémenté UserInterface
+
+public function getRoles() : array{
+    return []; 
+}
+public function eraseCredentials(){
+
+}
+public function getUserIdentifier(): string{
+    return "";
+}
+
+
+symfony console make:auth
+
+2 
+
+SecurityAuthenticator
+SecurityController => login et logout  
+
+=> créer 
+SecurityAuthenticator
+SecurityController
+fichier de formulaire de connexion  templates/security/login.html.twig
+
+
+config/packages/security.yaml
+
+
+
+
+
