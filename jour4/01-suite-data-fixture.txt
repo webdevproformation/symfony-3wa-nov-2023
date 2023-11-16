@@ -1,0 +1,10 @@
+DataFixture peupler votre base de données avec des informations factices
+
+=> symfony console make:fixture
+
+=> une seule class qui permet de remplir nos tables catégories 
+=> table article 
+
+=> le mieux est de créer 2 fichiers de fixture 
+=> 1 par Entité / table 
+
