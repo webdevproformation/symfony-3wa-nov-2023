@@ -17,10 +17,12 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create();
        
         // récupérer la référence dans une autre fixture 
-        $categorie = $this->getReference("categorie_1");
-
+        
+        
         for($i = 0 ; $i < 100 ; $i++){
-
+            
+            $categorie = $this->getReference("categorie_".$faker->numberBetween(0,5));
+            $membre = $this->getReference("membre_".$faker->numberBetween(0,5));
             $auteur = $faker->randomElements(['Victor Hugo', 'moi'])[0];
 
             $article = new Article();
@@ -29,7 +31,8 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
                     ->setAuteur($auteur)
                     ->setLiked($faker->numberBetween(2,10))
                     ->setCategories($categorie)
-                    ->setImage("76765393cb30ff425944521c25e1cdd1.jpg");
+                    ->setMembre($membre)
+                    ->setImage(null);
 
             $manager->persist($article);
         }
@@ -40,7 +43,8 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
     // par la commande php bin/console doctrine:fixtures:load
     public function getDependencies(): array{
         return [
-            CategorieFixtures::class
+            CategorieFixtures::class,
+            MembreFixtures::class
         ];
     }
 }

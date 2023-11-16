@@ -131,15 +131,15 @@ class ArticleController extends AbstractController
             $uploadDirectory = $this->getParameter("upload_directory");
             $uploadDirectory = str_replace("/upload", "" , $uploadDirectory);
             //dd($uploadDirectory);
-            $path = $uploadDirectory . "/" . $nomImage;
-            unlink($path);
+            $filetodelete = "{$uploadDirectory}/{$nomImage}";
+            if(file_exists($filetodelete)) unlink($filetodelete);
         }
 
         $em = $doctrine->getManager();
         $em->remove($article);
         $em->flush();
         $this->addFlash("success", "article $id a bien été supprimé");
-        return $this->redirectToRoute("home");
+        return $this->redirectToRoute("article_list");
 
     }
 

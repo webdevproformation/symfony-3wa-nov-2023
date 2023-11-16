@@ -1,0 +1,14 @@
+
+Membre peut créer plusieurs articles 
+article ne peut etre créé que par 1 seul membre 
+
+OneToMany 
+ManyToOne 
+
+symfony console make:entity
+
+symfony console make:migration
+
+symfony console d:m:m
+
+symfony console make:fixture

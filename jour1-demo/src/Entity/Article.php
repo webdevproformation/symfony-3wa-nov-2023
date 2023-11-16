@@ -65,6 +65,9 @@ class Article
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?Membre $membre = null;
+
     public function __construct()
     {
         // dès que l'utilise utilise le formulaire 
@@ -160,6 +163,18 @@ class Article
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): static
+    {
+        $this->membre = $membre;
 
         return $this;
     }

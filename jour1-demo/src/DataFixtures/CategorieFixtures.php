@@ -13,17 +13,19 @@ class CategorieFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        // $product = new Product();
-        $categorie = new Categorie();
-        $categorie->setLabel($faker->words(1 , true))
-                -> setDescription($faker->paragraphs(1, true))
-                ->setEtat(true);
-        $manager->persist($categorie);
-        $manager->flush();// ne pas oublier le flush
+        for($i = 0 ; $i <= 5 ; $i++){
+            $categorie = new Categorie();
+            $categorie->setLabel($faker->words(1 , true))
+                    -> setDescription($faker->paragraphs(1, true))
+                    ->setEtat($faker->randomElement([true, false]));
+            $manager->persist($categorie);
+            $manager->flush();// ne pas oublier le flush
 
-        $this->addReference("categorie_1" , $categorie) ; 
-        // méthode nous allons pouvoir passe une catégorie factice 
-        // d'une fixture à l'autre 
+            $this->addReference("categorie_{$i}" , $categorie) ; 
+            // méthode nous allons pouvoir passe une catégorie factice 
+            // d'une fixture à l'autre 
+        }
+        
 
     }
 }
