@@ -38,8 +38,8 @@
 <script>
     (function($){
         $(document).ready(function(){
-            const texte = $("#search_texte").val()
-
+            const texte = $("#search_texte").val().trim()
+            if(texte === "") return ;
             $(`h2:contains('${texte}')`).html(function(_, html) {
             return html.replace( new RegExp("("+texte+")", "g"), '<span class="smallcaps">$1</span>');
             });

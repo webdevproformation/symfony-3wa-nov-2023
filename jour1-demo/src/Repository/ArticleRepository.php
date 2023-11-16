@@ -32,8 +32,10 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
 
-    public function getArticleByKeyWord($value) : array{
+    public function getArticleByKeyWord(string $value) : array{
 
+        // SELECT * FROM articles AS a WHERE a.title LIKE %sit%
+        // 
         return $this->createQueryBuilder('a')
             ->andWhere('a.title LIKE :val')
             ->setParameter('val', "%$value%")

@@ -1,0 +1,119 @@
+https://localhost:8000
+
+essentiel de vérifier que les données entrées dans le système sont conformes à vos attendus
+
+=> verification // if 
+
+=> Assert => Entity 
+
+#[ORM\Column(type: Types::INTEGER)]
+#[Assert\NotBlank()]
+#[Assert\Length(
+    min : 10,
+    max : 1000,
+    minMessage : "  {{ limit }}  ", 
+    maxMessage : " {{ limit }} "
+)]
+private $title;
+
+
+la vérification est effectuée au niveau du controller 
+
+Controller : 
+$form->isValid()
+
+vue 
+=> visible au niveau des formulaires 
+=> sous le champ dans lequel il a saisit l'information 
+
+{{ form_label(form.title)  }}
+{{ form_widget(form.title)  }}
+{{ form_errors(form.title) }} => c'est lui qui va être alimenté par le message 
+
+---- 
+
+
+Formulaire qui n'est pas associé à une table 
+
+créer une Entité => search 
+
+créer un SeachType => créer le formulaire 
+
+Controller 
+même chose de d'habiture
+
+
+$form = $this->createForm(SeachType::type, $search)
+
+$form->handleRequest($request);
+
+if($form->isSubmitted() && $form->isValid()){
+    // entity manager 
+    $search->getDtDebutResa()
+    $search->getDtFinResa()
+    // requête SQL => repository->method()
+}
+
+
+// symfony console make:entity => 2 fichiers 
+
+=> Entity => décrire la table / valider les informations saisit dans les formulaire // afficher dans les vus les données 
+
+=> RepositoryEntity => intéger agir avec la base de données 
+=> SELECT 
+$repo->findAll() 
+$repo->find() 
+$repo->findBy() 
+
+// JOINTURE 
+// recherche WHERE sur plusieurs colonnes 
+
+=> RepositoryEntity => il est possible de créer tes propres recherche / SELECT 
+
+creer une méthode 
+
+
+public function find
+
+
+// SELECT * FROM articles AS a WHERE a.title LIKE %sit%
+        
+requete SQL en php 
+
+
+PDO 
+INJECTION SQL 
+
+1% ; DELETE FROM users; 
+
+$requete = $connexion->prepare("SELECT * FROM articles AS a WHERE a.title LIKE %:val%")
+
+$requete->bindParams(":val" , "1% ; DELETE FROM users; ")
+
+--- 
+
+Image 
+
+
+DataFixture 
+
+Migration => stocker la structure des tables nom des colonnes / leur type ...
+
+DataFixtures => permet remplir les tables 
+
+symfony console make:fixture 
+
+nom du fichier fixture 
+
+permet de simuler
+
+- remplir les champs des formulaires avec des données de votre choix 
+- simuler l'upload d'image 
+
+
+=> en plus de Faker => super lorem ipsum 
+
+
+
+
+
