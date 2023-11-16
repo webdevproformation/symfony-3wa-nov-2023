@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route("/admin")]
 class ArticleController extends AbstractController
 {
 
@@ -74,20 +75,6 @@ class ArticleController extends AbstractController
             "articles" => $articles 
         ] );
 
-    }
-
-    #[Route( "/article/{id}", name:"article_single")]
-    //public function showArticle($id, ArticleRepository $repo):Response{
-    public function showArticle(Article $article):Response{
-
-        // utilisation des params converter
-        //$article = $repo->find($id);
-
-        //dd($article);
-
-        return $this->render( "article/single.html.twig" , [
-            "article" => $article 
-        ] );
     }
 
     #[Route( "/article/update/{id}", name:"article_update")]

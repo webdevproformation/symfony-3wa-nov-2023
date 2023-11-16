@@ -25,6 +25,8 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
             $membre = $this->getReference("membre_".$faker->numberBetween(0,5));
             $auteur = $faker->randomElements(['Victor Hugo', 'moi'])[0];
 
+            $dt = \DateTimeImmutable::createFromMutable($faker->dateTimeBetween());
+
             $article = new Article();
             $article->setTitle($faker->words(7, true))
                     ->setDescription($faker->paragraphs(3, true))
@@ -32,6 +34,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
                     ->setLiked($faker->numberBetween(2,10))
                     ->setCategories($categorie)
                     ->setMembre($membre)
+                    ->setCreatedAt($dt)
                     ->setImage(null);
 
             $manager->persist($article);

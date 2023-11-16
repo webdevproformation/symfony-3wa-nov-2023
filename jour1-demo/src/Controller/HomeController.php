@@ -108,6 +108,20 @@ class HomeController extends AbstractController{ // class
         return $this->render("home/exo2.html.twig" , ["bonjour" => "bonjour"]); 
     }
 
+    #[Route( "/article/{id}", name:"article_single")]
+    //public function showArticle($id, ArticleRepository $repo):Response{
+    public function showArticle(Article $article):Response{
+
+        // utilisation des params converter
+        //$article = $repo->find($id);
+
+        //dd($article);
+
+        return $this->render( "article/single.html.twig" , [
+            "article" => $article 
+        ] );
+    }
+
     
 
 
