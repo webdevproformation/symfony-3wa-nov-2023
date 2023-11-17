@@ -65,7 +65,7 @@ class HomeController extends AbstractController{ // class
 
     // nouveauté du langage PHP 8
     // attribut 
-    #[Route("/contact" , name:"contact")]
+    //#[Route("/contact" , name:"contact")]
     public function contact(  ManagerRegistry $doctrine , CategorieRepository $repo ) : Response{
 
         /* $categorie = new Categorie();

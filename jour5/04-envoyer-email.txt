@@ -1,0 +1,13 @@
+Symfony dispose d'une module dédié à l'envoie d'email 
+
+=> symfony/mailer 
+
+=> lorsque l'on crée un profil
+=> envoyer un email de confirmation de création de profil 
+
+composer show 
+
+.env
+
+
+composer require symfony/sendinblue-mailer
