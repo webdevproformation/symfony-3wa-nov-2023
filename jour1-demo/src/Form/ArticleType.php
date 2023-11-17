@@ -24,7 +24,7 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
+            ->add('title') 
             ->add('description')
             ->add('auteur')
             ->add('liked')
@@ -44,7 +44,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Article::class, 
         ]);
     }
 }

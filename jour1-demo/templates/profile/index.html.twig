@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ pseudo }}{% endblock %}
+
+{% block body %}
+
+<h1>Hello {{ pseudo }}! ✅</h1>
+<section class="row">
+<h2 class="col-12">Voici la liste de vos {{ articles|length  }} articles </h2>
+{{ include("commun/_articles.html.twig") }}
+</section>
+
+{% endblock %}

@@ -52,8 +52,17 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        /**
+         * @var App\Entity\Membre ;
+         */
+        $membre = $token->getUser();
+
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('article_list'));
+        if($membre->isAdmin()){
+
+            return new RedirectResponse($this->urlGenerator->generate('article_list'));
+        }
+        return  new RedirectResponse($this->urlGenerator->generate('app_profile'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

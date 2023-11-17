@@ -1,0 +1,27 @@
+
+etudiant 
+id | nom 
+1    Alain
+2    John
+
+commande
+id | montant | etudiant_id => etudiant
+1     10         1
+2     30         2
+3     50         2
+
+lier les deux tables => clé étrangère sur 
+la table commande 
+
+=> comment le faire dans Symfony ?
+
+
+symfony console make:entity
+symfony console make:entity
+
+dans la commande ajouter un champ etudiant 
+type relation 
+.. 1-n OneToMany
+.. n-1 ManyToOne 
+
+symfony console make:migration

@@ -31,9 +31,14 @@
                         <li class="navbar-item">
                             <a href="#" class="nav-link">Bienvenue {{ app.user.pseudo }}</a>
                         </li>
+                        <li>
+                            <a href="{{ path('app_profile') }}" class="nav-link">Votre profil</a>
+                        </li>
+                        {% if app.user.isadmin %}
                         <li class="navbar-item">
                             <a href="{{ path('article_list') }}" class="nav-link">Admin</a>
                         </li>
+                        {% endif %}
                         <li class="navbar-item">
                             <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
                         </li>

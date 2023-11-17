@@ -1,0 +1,10 @@
+
+
+{{ form(form) }}
+
+
+
+{{ form_start(form) }}
+{{ form_row(form.nom) }}
+{{ form_row(form.prenom) }}
+{{ form_end(form) }}
