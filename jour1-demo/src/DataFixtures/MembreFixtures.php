@@ -23,9 +23,15 @@ class MembreFixtures extends Fixture
 
         for($i= 0 ; $i <= 5 ; $i++){
             $membre = new Membre();
+
             $membre->setEmail( $faker->email() )
                     ->setPseudo($faker->name());
-
+            if($i === 0){
+                $membre->setRoles(["ROLE_ADMIN"]);
+            }else {
+                $membre->setRoles(["ROLE_USER"]);
+            }
+           
             $hashedPassword = $this->hasher->hashPassword($membre , "demo");
         
             $membre->setPassword($hashedPassword);

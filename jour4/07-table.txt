@@ -1,0 +1,17 @@
+vehicule 
+
+id | nom 
+1    Peugeot
+2    Nissan 
+
+reservation
+id  dt_debut      dt_fin        vehicule_id
+1   16/11/2023    17/11/2023       2          
+2   25/11/2023    27/11/2023       1          xx
+
+
+comment savoir quelle véhicule est disponible du 
+18/11/2023 au 25/11/2023
+
+quelle véhicule est diposible à ces dates 
+

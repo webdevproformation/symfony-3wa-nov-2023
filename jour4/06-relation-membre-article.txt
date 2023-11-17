@@ -12,3 +12,15 @@ symfony console make:migration
 symfony console d:m:m
 
 symfony console make:fixture
+
+
+symfony console make:auth
+
+3 fichiers créés
+=> le formulaire .twig
+=> SecurityAuthenticator (démarche de connexion)
+=> SecurityController  ()
+
+mise à jour du fichier 
+
+security.yaml

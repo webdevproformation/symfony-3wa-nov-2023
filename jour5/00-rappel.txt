@@ -1,0 +1,102 @@
+Authentification
+
+
+=> module installé par défaut dans Symfony
+rapidement en place une authentification 
+
+module security 
+
+module compliqué => plusieurs fichiers qui sont en jeu
+
+- symfony console make:auth (via un formulaire login / password)
+
+=> plusieurs questions 
+
+- au préalable avoir créer une Entité login (pseudo / email)
+                                    password 
+
+implémenter deux interfaces traitements en + 
+UserInterface, PasswordAuthenticatedUserInterface
+
+=> forcer l'ajoute de méthode en + dans l'Entité 
+
+
+public function getRoles() : array{
+        /*$roles = $this->roles;
+        $roles[] = 'ROLE_USER'; 
+        return array_unique($roles);*/
+        return [];
+}
+
+groupe d'utilisateur 
+
+public function eraseCredentials(){
+
+}
+
+public function getUserIdentifier(): string{
+    return (string) $this->email;
+}
+
+
+- symfony console make:auth
+
+Controller => login / logout 
+SecurityAuthenticator : tout le processus de connexion 
+tout le processus de authentification 
+
+login.html.twig 
+
+attention 
+fichier de configuration security.yaml 
+
+fichier de configurer les traitements en global 
+
+security:
+    encoder: quel algorithme utiliser pour le hashage des mots de passe 
+    provider: où chercher les informations 
+    firewall:
+        décrire ce que l'on fait login / logout 
+
+    access_control:
+        voir aujourd'hui 
+
+dans les vues 
+
+{{ app.user }} null si on n'est pas connecté
+{{ app.user }} {  } si on est connecté
+
+{{ app.user.pseudo }}
+{{ app.user.role }}
+
+---- 
+
+migrations => permet de créer la structure des tables d'un projet 
+
+Datafixture => remplir les tables avec des données factices 
+
+créer plusieurs fichiers  de fixture 
+
+si vous avez des relations entre les tables 
+OneToMany 
+ManyToMany 
+
+=> il y a un ordre dans lesquels il faut créer les enregistrements
+
+=> $this->addReference("nom" , $entite); stocker des entités créés
+
+=> $this->getReference("nom") ; récupérer la référence 
+
+et il faut implémenter la fixture (Reservation)
+implements DependentFixtureInterface
+
+public function getDependencies(): array{
+    return [
+        CategorieFixtures::class,
+        MembreFixtures::class
+    ];
+}
+
+
+
+

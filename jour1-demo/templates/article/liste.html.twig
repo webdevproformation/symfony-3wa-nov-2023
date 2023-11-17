@@ -20,7 +20,7 @@
         {% for article in articles %}
             <tr>
                 <td>{{ article.title }}</td>
-                <td>{{ article.auteur }}</td>
+                <td>{{ article.membre.pseudo }}</td>
                 <td>
                     {% if article.categories is null %}
                         N/A

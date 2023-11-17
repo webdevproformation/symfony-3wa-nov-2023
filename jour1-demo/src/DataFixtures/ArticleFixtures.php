@@ -36,7 +36,6 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
                     ->setMembre($membre)
                     ->setCreatedAt($dt)
                     ->setImage(null);
-
             $manager->persist($article);
         }
         $manager->flush();

@@ -29,6 +29,9 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Article::class)]
     private Collection $articles;
 
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -64,13 +67,15 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function getRoles() : array{
-        return []; 
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER'; 
+        return array_unique($roles);
     }
     public function eraseCredentials(){
 
     }
     public function getUserIdentifier(): string{
-        return "";
+        return (string) $this->email;
     }
 
     public function getPseudo(): ?string
@@ -111,6 +116,13 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
                 $article->setMembre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
     }
